@@ -1,5 +1,5 @@
 class Host {
-  static var host = 'http://192.168.8.103:3366';
+  static var host = 'http://192.168.8.107:3366';
   // static var host = 'https://bw-image.000webhostapp.com';
 
   Uri baseUrl({String? endpoint}) => Uri.parse("$host/api/$endpoint");

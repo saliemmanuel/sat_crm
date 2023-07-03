@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sat_crm/api/service_api.dart';
-import 'package:sat_crm/config/palette.dart';
-import 'package:sat_crm/provider/auth_provider.dart';
-import 'package:sat_crm/widget/dialogue.dart';
 
 import '../../Models/users.dart';
+import '../../api/service_api.dart';
+import '../../config/palette.dart';
+import '../../provider/auth_provider.dart';
+import '../../widget/dialogue.dart';
 
-class ListRequete extends StatefulWidget {
-  const ListRequete({super.key});
+class ListAbonne extends StatefulWidget {
+  const ListAbonne({super.key});
 
   @override
-  State<ListRequete> createState() => _ListRequeteState();
+  State<ListAbonne> createState() => _ListAbonneState();
 }
 
-class _ListRequeteState extends State<ListRequete> {
+class _ListAbonneState extends State<ListAbonne> {
   Users? user;
   List listReq = [];
   var service = ServiceApi();
@@ -39,7 +39,9 @@ class _ListRequeteState extends State<ListRequete> {
       body: Column(
         children: [
           if (listReq == [])
-            const Center(child: CircularProgressIndicator())
+            const Center(
+              child: CircularProgressIndicator(),
+            )
           else
             ListView.builder(
               shrinkWrap: true,
@@ -50,7 +52,7 @@ class _ListRequeteState extends State<ListRequete> {
                   padding: const EdgeInsets.all(10.0),
                   margin: const EdgeInsets.all(15.0),
                   decoration: BoxDecoration(
-                      color: Colors.grey.shade300,
+                      color: Colors.grey.shade100.withOpacity(0.8),
                       borderRadius: BorderRadius.circular(15.0)),
                   child: InkWell(
                     onTap: () {

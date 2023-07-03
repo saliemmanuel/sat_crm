@@ -1,4 +1,3 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sat_crm/provider/auth_provider.dart';
@@ -7,6 +6,7 @@ import 'package:sat_crm/views/components/page_requete.dart';
 import 'package:sat_crm/widget/widget.dart';
 
 import 'components/ajout_abonne.dart';
+import 'components/list_abonne.dart';
 import 'components/list_requete.dart';
 
 class Home extends StatefulWidget {
@@ -68,15 +68,18 @@ class _HomeState extends State<Home> {
                     title: const Text("Liste abonné"),
                     trailing: const Icon(Icons.arrow_right_rounded),
                     onTap: () {
-                      pushNewPage(const PageRequet(), context);
+                      pushNewPage(const ListAbonne(), context);
                     },
                   )
                 ],
               ),
-              const ListTile(
-                leading: Icon(Icons.info),
-                title: Text("A-propos"),
-                trailing: Icon(Icons.arrow_right_rounded),
+              ListTile(
+                leading: const Icon(Icons.info),
+                title: const Text("A-propos"),
+                trailing: const Icon(Icons.arrow_right_rounded),
+                onTap: () {
+                  showAboutDialog(context: context);
+                },
               ),
             ],
           ),

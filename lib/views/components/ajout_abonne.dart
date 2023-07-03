@@ -1,5 +1,9 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
+import '../../config/palette.dart';
+import '../../widget/dialogue.dart';
 import 'home_commercial.dart';
 
 class AjoutAbonne extends StatefulWidget {
@@ -10,12 +14,18 @@ class AjoutAbonne extends StatefulWidget {
 }
 
 class _AjoutAbonneState extends State<AjoutAbonne> {
+  var pageController = PageController();
+  var genre = "Genre";
+
+  dynamic image;
+  bool imageIsLoading = false;
+
+  dynamic dossier;
+  bool dossierIsLoading = false;
   @override
   Widget build(BuildContext context) {
-    var pageController = PageController();
-    var genre = "Genre";
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(title: const Text("Ajout abonné")),
       body: PageView(
         controller: pageController,
         scrollDirection: Axis.horizontal,
@@ -131,10 +141,10 @@ class _AjoutAbonneState extends State<AjoutAbonne> {
                   Row(
                     children: [
                       const Icon(Icons.person),
-                      const SizedBox(width: 20.0),
+                      const SizedBox(width: 15.0),
                       Expanded(
                         child: Container(
-                            height: 55.0,
+                            height: 60.0,
                             width: double.infinity,
                             decoration: BoxDecoration(
                                 border: Border.all(),
@@ -316,6 +326,71 @@ class _AjoutAbonneState extends State<AjoutAbonne> {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  void _pickDossier() async {
+    setState(() {
+      dossierIsLoading = true;
+    });
+
+    try {
+      var temp = await FilePicker.platform.pickFiles(
+        allowedExtensions: ['pdf', 'png', 'jpg', 'jpeg'],
+        type: FileType.custom,
+      );
+      PlatformFile file = temp!.files.first;
+      setState(() {
+        if (!mounted) return;
+        dossier = file;
+        dossierIsLoading = false;
+      });
+    } on PlatformException catch (e) {
+      simpleDialog(title: 'Error', content: e.toString(), context: context);
+    } catch (e) {
+      simpleDialog(title: 'Error', content: e.toString(), context: context);
+    }
+  }
+
+  void _pickImg() async {
+    setState(() {
+      imageIsLoading = true;
+    });
+
+    try {
+      var temp = await FilePicker.platform.pickFiles(
+        allowedExtensions: ['pdf', 'png', 'jpg', 'jpeg'],
+        type: FileType.custom,
+      );
+      PlatformFile file = temp!.files.first;
+      setState(() {
+        if (!mounted) return;
+        image = file;
+        imageIsLoading = false;
+      });
+    } on PlatformException catch (e) {
+      simpleDialog(title: 'Error', content: e.toString(), context: context);
+    } catch (e) {
+      simpleDialog(title: 'Error', content: e.toString(), context: context);
+    }
+  }
+
+  buildFile(PlatformFile file) {
+    final kb = file.size / 1024;
+    final mb = kb / 1024;
+    final filesize =
+        mb > 1 ? '${mb.toStringAsFixed(2)} MB' : '${kb.toStringAsFixed(2)} Ko';
+    return Container(
+      padding: const EdgeInsets.all(15.0),
+      alignment: Alignment.center,
+      margin: const EdgeInsets.all(8.0),
+      decoration: BoxDecoration(
+          color: Palette.primaryColor,
+          borderRadius: BorderRadius.circular(10.0)),
+      child: Text(
+        '${file.name} $filesize',
+        style: const TextStyle(color: Colors.white),
       ),
     );
   }
