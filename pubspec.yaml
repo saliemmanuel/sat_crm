@@ -51,6 +51,9 @@ dependencies:
   ussd_phone_call_sms: ^0.0.3
   file_picker: ^5.3.2
   mime: ^1.0.4
+  image_picker: ^1.0.0
+  geolocator: ^9.0.2
+  shared_preferences: ^2.2.0
 
 
 dev_dependencies:
