@@ -46,7 +46,7 @@ class _ListRequeteState extends State<ListRequete> {
               itemCount: listReq.length,
               itemBuilder: (context, index) {
                 return Container(
-                  // height: 130.0,
+                  height: 150.0,
                   padding: const EdgeInsets.all(10.0),
                   margin: const EdgeInsets.all(15.0),
                   decoration: BoxDecoration(
