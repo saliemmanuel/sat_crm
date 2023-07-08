@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:sat_crm/provider/home_provider.dart';
+import 'package:sat_crm/views/login.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Models/users.dart';
+import '../views/home.dart';
+import '../widget/widget.dart';
 
 class AuthProvider extends ChangeNotifier {
   bool _connexionIsLoading = false;
@@ -29,6 +33,13 @@ class AuthProvider extends ChangeNotifier {
 
   saveUserData(Users? users) {
     _users = users;
+    notifyListeners();
+  }
+
+  deconnexion(var context) async {
+    var prefs = await SharedPreferences.getInstance();
+    await prefs.remove("ID");
+    pushNewPageRemoveUntil(const Login(), context);
     notifyListeners();
   }
 }

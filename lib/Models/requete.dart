@@ -11,6 +11,7 @@ class Requet {
   final String? POINTDEVENTE_ID;
   final String? TYPEREQUETE_ID;
   final String? COMMERCIAL_ID;
+  final String? SOLDE;
   Requet({
     this.OBJET,
     this.MESSAGE,
@@ -22,7 +23,9 @@ class Requet {
     this.POINTDEVENTE_ID,
     this.TYPEREQUETE_ID,
     this.COMMERCIAL_ID,
+   required this.SOLDE,
   });
+  
 
   Requet copyWith({
     String? OBJET,
@@ -35,6 +38,7 @@ class Requet {
     String? POINTDEVENTE_ID,
     String? TYPEREQUETE_ID,
     String? COMMERCIAL_ID,
+    String? SOLDE,
   }) {
     return Requet(
       OBJET: OBJET ?? this.OBJET,
@@ -47,6 +51,7 @@ class Requet {
       POINTDEVENTE_ID: POINTDEVENTE_ID ?? this.POINTDEVENTE_ID,
       TYPEREQUETE_ID: TYPEREQUETE_ID ?? this.TYPEREQUETE_ID,
       COMMERCIAL_ID: COMMERCIAL_ID ?? this.COMMERCIAL_ID,
+      SOLDE: SOLDE ?? this.SOLDE,
     );
   }
 
@@ -62,6 +67,7 @@ class Requet {
       'POINTDEVENTE_ID': POINTDEVENTE_ID,
       'TYPEREQUETE_ID': TYPEREQUETE_ID,
       'COMMERCIAL_ID': COMMERCIAL_ID,
+      'SOLDE': SOLDE,
     };
   }
 
@@ -77,6 +83,7 @@ class Requet {
       POINTDEVENTE_ID: map['POINTDEVENTE_ID'],
       TYPEREQUETE_ID: map['TYPEREQUETE_ID'],
       COMMERCIAL_ID: map['COMMERCIAL_ID'],
+      SOLDE: map['SOLDE'],
     );
   }
 
@@ -86,37 +93,39 @@ class Requet {
 
   @override
   String toString() {
-    return 'Requet(OBJET: $OBJET, MESSAGE: $MESSAGE, PIECESJOINTES: $PIECESJOINTES, STATUT: $STATUT, REPONSE: $REPONSE, DATEENVOI: $DATEENVOI, DATEREPONSE: $DATEREPONSE, POINTDEVENTE_ID: $POINTDEVENTE_ID, TYPEREQUETE_ID: $TYPEREQUETE_ID, COMMERCIAL_ID: $COMMERCIAL_ID)';
+    return 'Requet(OBJET: $OBJET, MESSAGE: $MESSAGE, PIECESJOINTES: $PIECESJOINTES, STATUT: $STATUT, REPONSE: $REPONSE, DATEENVOI: $DATEENVOI, DATEREPONSE: $DATEREPONSE, POINTDEVENTE_ID: $POINTDEVENTE_ID, TYPEREQUETE_ID: $TYPEREQUETE_ID, COMMERCIAL_ID: $COMMERCIAL_ID, SOLDE: $SOLDE)';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-
+  
     return other is Requet &&
-        other.OBJET == OBJET &&
-        other.MESSAGE == MESSAGE &&
-        other.PIECESJOINTES == PIECESJOINTES &&
-        other.STATUT == STATUT &&
-        other.REPONSE == REPONSE &&
-        other.DATEENVOI == DATEENVOI &&
-        other.DATEREPONSE == DATEREPONSE &&
-        other.POINTDEVENTE_ID == POINTDEVENTE_ID &&
-        other.TYPEREQUETE_ID == TYPEREQUETE_ID &&
-        other.COMMERCIAL_ID == COMMERCIAL_ID;
+      other.OBJET == OBJET &&
+      other.MESSAGE == MESSAGE &&
+      other.PIECESJOINTES == PIECESJOINTES &&
+      other.STATUT == STATUT &&
+      other.REPONSE == REPONSE &&
+      other.DATEENVOI == DATEENVOI &&
+      other.DATEREPONSE == DATEREPONSE &&
+      other.POINTDEVENTE_ID == POINTDEVENTE_ID &&
+      other.TYPEREQUETE_ID == TYPEREQUETE_ID &&
+      other.COMMERCIAL_ID == COMMERCIAL_ID &&
+      other.SOLDE == SOLDE;
   }
 
   @override
   int get hashCode {
     return OBJET.hashCode ^
-        MESSAGE.hashCode ^
-        PIECESJOINTES.hashCode ^
-        STATUT.hashCode ^
-        REPONSE.hashCode ^
-        DATEENVOI.hashCode ^
-        DATEREPONSE.hashCode ^
-        POINTDEVENTE_ID.hashCode ^
-        TYPEREQUETE_ID.hashCode ^
-        COMMERCIAL_ID.hashCode;
+      MESSAGE.hashCode ^
+      PIECESJOINTES.hashCode ^
+      STATUT.hashCode ^
+      REPONSE.hashCode ^
+      DATEENVOI.hashCode ^
+      DATEREPONSE.hashCode ^
+      POINTDEVENTE_ID.hashCode ^
+      TYPEREQUETE_ID.hashCode ^
+      COMMERCIAL_ID.hashCode ^
+      SOLDE.hashCode;
   }
 }

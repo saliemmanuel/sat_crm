@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sat_crm/views/login.dart';
@@ -20,8 +22,14 @@ class _SplashState extends State<Splash> {
   late Users? user;
   @override
   void initState() {
-    initPage();
+    inTimer();
     super.initState();
+  }
+
+  inTimer() {
+    Timer(const Duration(seconds: 3), () {
+      initPage();
+    });
   }
 
   initPage() async {
@@ -50,6 +58,18 @@ class _SplashState extends State<Splash> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: Center(
+        child: Column(
+          children: [
+            const Spacer(flex: 2),
+            Image.asset("assets/logo.png"),
+            const Spacer(flex: 3),
+            const CircularProgressIndicator(),
+            const Spacer(flex: 1),
+          ],
+        ),
+      ),
+    );
   }
 }

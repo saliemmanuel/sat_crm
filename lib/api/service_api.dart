@@ -112,6 +112,7 @@ class ServiceApi {
         request.fields['POINTDEVENTE_ID'] = idPointDeVent['ID'].toString();
         request.fields['TYPEREQUETE_ID'] = requet.TYPEREQUETE_ID!;
         request.fields['COMMERCIAL_ID'] = requet.COMMERCIAL_ID!;
+        request.fields['SOLDE'] = requet.SOLDE!;
 
         var piece = await http.MultipartFile.fromPath(
             "PIECESJOINTES", requet.PIECESJOINTES!);

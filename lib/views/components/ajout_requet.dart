@@ -20,6 +20,7 @@ class PageRequet extends StatefulWidget {
 
 var objet = TextEditingController();
 var numeros = TextEditingController();
+var solde = TextEditingController();
 var message = TextEditingController();
 
 class _PageRequetState extends State<PageRequet> {
@@ -32,6 +33,7 @@ class _PageRequetState extends State<PageRequet> {
 
   dynamic pieceJointe;
   bool pieceJointeIsLoading = false;
+  bool showSolde = false;
   @override
   void initState() {
     initListReq();
@@ -112,10 +114,36 @@ class _PageRequetState extends State<PageRequet> {
                                   s as Map<String, dynamic>);
                               type = typeRequeteModel.NOM;
                               idReq = typeRequeteModel.ID.toString();
+                              if (type == "LS") {
+                                showSolde = true;
+                              } else {
+                                showSolde = false;
+                                solde.clear();
+                              }
                             });
                           })),
                 )
               ],
+            ),
+            Visibility(
+              visible: showSolde,
+              child: Column(
+                children: [
+                  const SizedBox(height: 15.0),
+                  TextFormField(
+                    controller: solde,
+                    keyboardType: TextInputType.number,
+                    decoration: const InputDecoration(
+                      icon: Icon(Icons.monetization_on),
+                      hintText: 'Solde',
+                      labelText: 'Solde',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
             const SizedBox(height: 15.0),
             TextFormField(
@@ -208,17 +236,17 @@ class _PageRequetState extends State<PageRequet> {
                         number: numeros.text,
                         context: context,
                         requet: Requet(
-                          OBJET: objet.text,
-                          MESSAGE: message.text,
-                          STATUT: "EN COURS",
-                          TYPEREQUETE_ID: idReq,
-                          COMMERCIAL_ID: user!.commercialid,
-                          DATEREPONSE: DateTime.now().toString(),
-                          PIECESJOINTES: pieceJointe.path,
-                          POINTDEVENTE_ID: "2",
-                          REPONSE: "VIDE",
-                          DATEENVOI: DateTime.now().toString(),
-                        ));
+                            OBJET: objet.text,
+                            MESSAGE: message.text,
+                            STATUT: "EN COURS",
+                            TYPEREQUETE_ID: idReq,
+                            COMMERCIAL_ID: user!.commercialid,
+                            DATEREPONSE: DateTime.now().toString(),
+                            PIECESJOINTES: pieceJointe.path,
+                            POINTDEVENTE_ID: "2",
+                            REPONSE: "VIDE",
+                            DATEENVOI: DateTime.now().toString(),
+                            SOLDE: solde.text.isEmpty ? "" : solde.text));
                   }
                 }
               },

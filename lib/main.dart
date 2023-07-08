@@ -8,6 +8,7 @@ import 'config/theme.dart';
 import 'provider/auth_provider.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   var prefs = await SharedPreferences.getInstance();
   var isLogged = prefs.getString("ID");
   runApp(MultiProvider(

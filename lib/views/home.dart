@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sat_crm/provider/auth_provider.dart';
 import 'package:sat_crm/provider/home_provider.dart';
-import 'package:sat_crm/views/components/page_requete.dart';
+import 'package:sat_crm/views/components/ajout_requet.dart';
 import 'package:sat_crm/widget/widget.dart';
 
 import 'components/ajout_abonne.dart';
 import 'components/list_abonne.dart';
 import 'components/list_requete.dart';
+import 'components/profil.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -79,6 +80,14 @@ class _HomeState extends State<Home> {
                 trailing: const Icon(Icons.arrow_right_rounded),
                 onTap: () {
                   showAboutDialog(context: context);
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.settings),
+                title: const Text("Profil"),
+                trailing: const Icon(Icons.arrow_right_rounded),
+                onTap: () {
+                  pushNewPage(const Profil(), context);
                 },
               ),
             ],
